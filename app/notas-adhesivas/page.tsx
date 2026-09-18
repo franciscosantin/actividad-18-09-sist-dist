@@ -53,16 +53,16 @@ export default function NotasAdhesivasPage() {
   <>
       <h1>Sticky notes</h1>
       <label>
-        Titulo: <input onChange={onChangeTitle} />
+        Titulo: <input value={titleInput} onChange={onChangeTitle} />
       </label>
       <label>
-        Body: <input onChange={onChangeBody} />
+        Body: <input value={bodyInput} onChange={onChangeBody} />
       </label>
       <label>
-        BGColor: <input onChange={onChangeBgColor} />
+        BGColor: <input value={bgColorInput} onChange={onChangeBgColor} />
       </label>
       <label>
-        Minutos: <input onChange={onChangeMinutes} />
+        Minutos: <input value={minutesInput} onChange={onChangeMinutes} />
       </label>
       <button onClick={onAddStickyNote}>Agregar</button>
       <h2>Notas:</h2>
@@ -72,7 +72,11 @@ export default function NotasAdhesivasPage() {
                 <StickyNoteComp key={sn.id} title={sn.title} body={sn.body} bgColor={sn.bgColor} validUntil={sn.validUntil} onDelete={() => {
               const i = stickyNotes.indexOf(sn);
               setStickyNotes([...stickyNotes.slice(0,i), ...stickyNotes.slice(i+1)]);
-            }}/>
+            }} onEditedFields={(nTitle, nBody, nBgColor, nValidUntil) => {
+                const i = stickyNotes.indexOf(sn);
+                stickyNotes[i] = { id: sn.id, title: nTitle, body: nBody, bgColor: nBgColor, validUntil: nValidUntil };
+                setStickyNotes(stickyNotes.slice());
+              }}/>
           ));
         } else {
           return null;
