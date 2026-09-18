@@ -2,7 +2,7 @@ import React from 'react';
 
 const StickyNoteComp = ({ children, title, body, bgColor, validUntil }): {
   children: React.ReactNode;
-  stickyNote: string;
+  title: string;
   body: string;
   bgColor: string;
   validUntil: string
