@@ -1,11 +1,12 @@
 import React from 'react';
 
-const StickyNoteComp = ({ children, title, body, bgColor, validUntil }): {
+const StickyNoteComp = ({ children, title, body, bgColor, validUntil, onDelete }): {
   children: React.ReactNode;
   title: string;
   body: string;
   bgColor: string;
-  validUntil: string
+  validUntil: string;
+  onDelete: () => void
 } => {
   return (
     <>
@@ -13,9 +14,11 @@ const StickyNoteComp = ({ children, title, body, bgColor, validUntil }): {
         <h1>{title}</h1>
         <p>{body}</p>
         <span>{`Valido hasta: ${validUntil}`}</span>
+        <br/>
+        <button onClick={onDelete}>Eliminar</button>
       </div>
     </>
   );
-}
+};
 
 export default StickyNoteComp;

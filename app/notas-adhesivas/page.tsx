@@ -23,6 +23,8 @@ export default function NotasAdhesivasPage() {
   };
   useEffect(() => {
     if (!loaded) {
+      Notification.requestPermission();
+      console.log(Notification.permission);
       const rawSNS = localStorage.getItem("sticky-notes");
       const rawSnId = localStorage.getItem("sticky-note-id");
       setSnId(rawSnId != null ? Number(rawSnId) : 1);
@@ -30,7 +32,7 @@ export default function NotasAdhesivasPage() {
       setLoaded(true);
     } else {
       localStorage.setItem("sticky-notes", JSON.stringify(stickyNotes));
-      localStorage.setItem("sticky-note-id", snId)
+      localStorage.setItem("sticky-note-id", snId);
     }
   }, [stickyNotes, loaded]);
   
@@ -67,7 +69,10 @@ export default function NotasAdhesivasPage() {
       {(() => {
         if (stickyNotes.length > 0) {
           return stickyNotes.map(sn => (
-                <StickyNoteComp key={sn.id} title={sn.title} body={sn.body} bgColor={sn.bgColor} validUntil={sn.validUntil}/>
+                <StickyNoteComp key={sn.id} title={sn.title} body={sn.body} bgColor={sn.bgColor} validUntil={sn.validUntil} onDelete={() => {
+              const i = stickyNotes.indexOf(sn);
+              setStickyNotes([...stickyNotes.slice(0,i), ...stickyNotes.slice(i+1)]);
+            }}/>
           ));
         } else {
           return null;
