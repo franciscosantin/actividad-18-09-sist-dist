@@ -18,6 +18,9 @@ export default function NotasAdhesivasPage() {
       return;
     }
     const newSN = { id: snId, title: titleInput, body: bodyInput, bgColor: bgColorInput, validUntil: minutesInput };
+    setTimeout(() => {
+      new Notification(`La nota ${titleInput} cumplió su validez`);
+    }, minutesInput * 60 * 1000);
     setSnId(snId + 1);
     setStickyNotes([newSN, ...stickyNotes]);
   };
@@ -72,9 +75,9 @@ export default function NotasAdhesivasPage() {
                 <StickyNoteComp key={sn.id} title={sn.title} body={sn.body} bgColor={sn.bgColor} validUntil={sn.validUntil} onDelete={() => {
               const i = stickyNotes.indexOf(sn);
               setStickyNotes([...stickyNotes.slice(0,i), ...stickyNotes.slice(i+1)]);
-            }} onEditedFields={(nTitle, nBody, nBgColor, nValidUntil) => {
+            }} onEditedFields={(nTitle, nBody, nBgColor, nMinutes) => {
                 const i = stickyNotes.indexOf(sn);
-                stickyNotes[i] = { id: sn.id, title: nTitle, body: nBody, bgColor: nBgColor, validUntil: nValidUntil };
+                stickyNotes[i] = { id: sn.id, title: nTitle, body: nBody, bgColor: nBgColor, validUntil: nMinutes };
                 setStickyNotes(stickyNotes.slice());
               }}/>
           ));

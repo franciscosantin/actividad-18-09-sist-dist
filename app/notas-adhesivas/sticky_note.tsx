@@ -31,7 +31,7 @@ const StickyNoteComp = ({ children, title, body, bgColor, validUntil, onDelete, 
             BgColor: <input value={edBgColor} onChange={(v) => setEdBgColor(v.target.value)} />
           </label>
           <label>
-            Valid Until: <input value={edValidUntil} onChange={(v) => setEdValidUntil(v.target.value)} />
+            Minutos de validez: <input value={edValidUntil} onChange={(v) => setEdValidUntil(v.target.value)} />
           </label>
           <button onClick={() => setEditEnabled(false)}>Cancelar</button>
           <button onClick={() => {
