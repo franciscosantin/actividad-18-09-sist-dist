@@ -16,6 +16,8 @@ export default function NotasAdhesivasPage() {
   const btnStyle = "inline-flex items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50";
   const hdrStyle = "flex flex-col items-center gap-6 p-7 rounded-2xl shadow-xl rounded-md w-md m-auto mt-6 mb-5 w-xl";
   const titleStyle = "text-xl font-bold";
+  const inputStyle = "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 shadow-sm transition-colors placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100";
+  const labelStyle = "mb-1.5 block text-sm font-semibold leading-5 text-gray-100";
   const onAddStickyNote = () => {
     if (titleInput == "") {
       return;
@@ -59,18 +61,18 @@ export default function NotasAdhesivasPage() {
   <>
       <div className={hdrStyle}>
         <h1>Sticky notes</h1>
-        <label>
-          Titulo: <input value={titleInput} onChange={onChangeTitle} />
+        <label className={labelStyle}>
+          Titulo: <input className={inputStyle} value={titleInput} onChange={onChangeTitle} />
         </label>
-        <label>
-          Body: <input value={bodyInput} onChange={onChangeBody} />
+        <label className={labelStyle}>
+          Body: <input className={inputStyle} value={bodyInput} onChange={onChangeBody} />
         </label>
-        <label>
-          BGColor: <input value={bgColorInput} onChange={onChangeBgColor} />
+        <label className={labelStyle}>
+          BGColor: <input className={inputStyle} value={bgColorInput} onChange={onChangeBgColor} />
         </label>
-        <label>
-          Minutos: <input value={minutesInput} onChange={onChangeMinutes} />
-        </label>
+        <label className={labelStyle}>
+          Minutos: <input className={inputStyle} value={minutesInput} onChange={onChangeMinutes} />
+        </label >
         <button className={btnStyle} onClick={onAddStickyNote}>Agregar</button>
       </div>
       <h2 className={`m-auto mb-5 ${titleStyle}`}>Notas:</h2>
